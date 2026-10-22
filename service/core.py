@@ -94,5 +94,5 @@ def forecast(symbol: str, tf: str, samples: int = DEFAULT_SAMPLES,
         "bands": {key: [round(float(v), 2) for v in series] for key, series in bands.items()},
         "paths": [[round(float(v), 2) for v in path] for path in closes[:10]],
         "seconds": round(elapsed, 1),
-        "generated_at": pd.Timestamp.utcnow().isoformat(),
+        "generated_at": pd.Timestamp.now(tz="UTC").isoformat(),
     }

@@ -27,7 +27,8 @@ LOG = ROOT / "var" / "runner.log"
 
 
 def log(message: str) -> None:
-    line = f"{time.strftime('%Y-%m-%d %H:%M:%S')} {message}"
+    stamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())  # UTC, come il DB
+    line = f"{stamp}Z {message}"
     print(line, flush=True)
     LOG.parent.mkdir(parents=True, exist_ok=True)
     with LOG.open("a", encoding="utf-8") as handle:

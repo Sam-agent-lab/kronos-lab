@@ -24,13 +24,17 @@ def main() -> int:
         return 0
 
     rows.sort(key=lambda row: (row["symbol"], row["tf"]))
-    lines = [f"Kronos digest · {rows[0]['generated_at'][:16].replace('T', ' ')} UTC"]
+    stamp = max(row["generated_at"] for row in rows).replace("T", " ")[:16]
+    lines = [f"Kronos digest · {stamp} UTC"]
     for row in rows:
         arrow = "▲" if row["prob_up"] >= 0.5 else "▼"
+        median = row["median_final"]
+        # prezzi da 1 a 100.000: 5 cifre significative, mai "mediana 1"
+        shown = f"{median:,.2f}" if median < 100 else f"{median:,.1f}" if median < 1000 else f"{median:,.0f}"
         lines.append(
             f"{row['symbol']} {row['tf']}: {row['regime']} {arrow} "
-            f"prob_up={row['prob_up']:.2f} · mediana {row['median_final']:,.0f} "
-            f"({(row['median_final'] / row['last_price'] - 1) * 100:+.2f}%) · "
+            f"prob_up={row['prob_up']:.2f} · mediana {shown} "
+            f"({(median / row['last_price'] - 1) * 100:+.2f}%) · "
             f"banda 10-90 {row['band_width_pct']['p10_p90']:.2f}% · "
             f"{row['samples']} path"
         )
