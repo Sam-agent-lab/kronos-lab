@@ -138,3 +138,14 @@ prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%)
   nessuna fee 0,932x. Direzione 50,5/49,7/51,2%, copertura 80% al 52,2%.
 - Documento `docs/phase3-results-small512.md` riscritto: fatti verificati sui file di risultato,
   nota su `top_p=0.9` e 30 path, spiegazione delle 4 serie con 364 giorni.
+
+## 2026-10-22 — Studio larghezza bande vs volatilità realizzata (solo CPU)
+
+- `scripts/band_width_study.py`: per ogni forecast confronta banda p10–p90 prevista, range
+  realizzato e range delle N candele precedenti (baseline di persistenza).
+- In pool: Spearman 0,753 (banda) contro 0,750 (baseline), Pearson 0,556 contro 0,607. A 1h e 4h
+  Kronos è peggiore della baseline (0,288 vs 0,389 e 0,311 vs 0,330); a 5m/15m equivalenti.
+- Banda mediana 1,93% del prezzo contro range realizzato 1,25% e movimento tipico 0,65%: larga,
+  ma copre solo il 52,2% degli esiti invece dell'80%. Errore mediano del centro 0,78%: il
+  problema è il centro, non la larghezza.
+- Nessuna GPU usata (Vietato dalla richiesta: solo VPS).

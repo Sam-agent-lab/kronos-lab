@@ -1,0 +1,207 @@
+{
+ "variant": "small512",
+ "pooled": {
+  "n": 7296,
+  "pearson_pred": 0.5555891231729269,
+  "spearman_pred": 0.7530307355544399,
+  "pearson_hist": 0.6071068063865398,
+  "spearman_hist": 0.750322548073013,
+  "ratio_median": 0.6709631887628762
+ },
+ "per_series": {
+  "BNBUSDT 15m": {
+   "n": 365,
+   "pearson_pred": 0.40092386741698666,
+   "spearman_pred": 0.3920875665991319,
+   "pearson_hist": 0.37509316823356503,
+   "spearman_hist": 0.4149130231995717,
+   "ratio_median": 0.6730387775309875
+  },
+  "BNBUSDT 1h": {
+   "n": 364,
+   "pearson_pred": 0.24680035974179143,
+   "spearman_pred": 0.2984965221577924,
+   "pearson_hist": 0.3996576324307012,
+   "spearman_hist": 0.34626195722086134,
+   "ratio_median": 0.7227198275298845
+  },
+  "BNBUSDT 4h": {
+   "n": 365,
+   "pearson_pred": 0.2070508739430986,
+   "spearman_pred": 0.28004456805265254,
+   "pearson_hist": 0.3836613743650073,
+   "spearman_hist": 0.2636417478770949,
+   "ratio_median": 0.5716994805003448
+  },
+  "BNBUSDT 5m": {
+   "n": 365,
+   "pearson_pred": 0.5006514047955093,
+   "spearman_pred": 0.5570666028335016,
+   "pearson_hist": 0.5460434124686023,
+   "spearman_hist": 0.6251222166560142,
+   "ratio_median": 0.7733588726227912
+  },
+  "BTCUSDT 15m": {
+   "n": 365,
+   "pearson_pred": 0.2836579344907573,
+   "spearman_pred": 0.321244105097687,
+   "pearson_hist": 0.3456280280782446,
+   "spearman_hist": 0.4340269431893057,
+   "ratio_median": 0.7089446970878698
+  },
+  "BTCUSDT 1h": {
+   "n": 365,
+   "pearson_pred": 0.09011990616732576,
+   "spearman_pred": 0.11308316655273765,
+   "pearson_hist": 0.4518044257770165,
+   "spearman_hist": 0.3204109835818797,
+   "ratio_median": 0.7101083563468493
+  },
+  "BTCUSDT 4h": {
+   "n": 365,
+   "pearson_pred": 0.241064121267865,
+   "spearman_pred": 0.16630472603973617,
+   "pearson_hist": 0.34270668603105287,
+   "spearman_hist": 0.2684015961581648,
+   "ratio_median": 0.5117068270228076
+  },
+  "BTCUSDT 5m": {
+   "n": 365,
+   "pearson_pred": 0.46462380923878954,
+   "spearman_pred": 0.527540391340077,
+   "pearson_hist": 0.4546531341689552,
+   "spearman_hist": 0.5393487042936853,
+   "ratio_median": 0.748061703554652
+  },
+  "ETHUSDT 15m": {
+   "n": 365,
+   "pearson_pred": 0.4003112510332555,
+   "spearman_pred": 0.4536753836776294,
+   "pearson_hist": 0.39604091223631227,
+   "spearman_hist": 0.46439565375114455,
+   "ratio_median": 0.6868757516177741
+  },
+  "ETHUSDT 1h": {
+   "n": 365,
+   "pearson_pred": 0.18211113261147688,
+   "spearman_pred": 0.28244719574160404,
+   "pearson_hist": 0.34595585646220284,
+   "spearman_hist": 0.27728485303154066,
+   "ratio_median": 0.7142930839192998
+  },
+  "ETHUSDT 4h": {
+   "n": 365,
+   "pearson_pred": 0.1642578704701164,
+   "spearman_pred": 0.14794298448015045,
+   "pearson_hist": 0.20517026098418792,
+   "spearman_hist": 0.20443286782833162,
+   "ratio_median": 0.4679762117846929
+  },
+  "ETHUSDT 5m": {
+   "n": 365,
+   "pearson_pred": 0.39184657149375307,
+   "spearman_pred": 0.5224313526132525,
+   "pearson_hist": 0.4234878750381545,
+   "spearman_hist": 0.5560513593749615,
+   "ratio_median": 0.7417176169086348
+  },
+  "SOLUSDT 15m": {
+   "n": 365,
+   "pearson_pred": 0.36083597292882463,
+   "spearman_pred": 0.421231766212678,
+   "pearson_hist": 0.3136473052364987,
+   "spearman_hist": 0.45860032624011965,
+   "ratio_median": 0.6701443579299771
+  },
+  "SOLUSDT 1h": {
+   "n": 365,
+   "pearson_pred": 0.1923256585898807,
+   "spearman_pred": 0.19233607174321302,
+   "pearson_hist": 0.33062556249837594,
+   "spearman_hist": 0.29736737549448083,
+   "ratio_median": 0.7157781859703122
+  },
+  "SOLUSDT 4h": {
+   "n": 364,
+   "pearson_pred": 0.31992793295630656,
+   "spearman_pred": 0.2849548956647337,
+   "pearson_hist": 0.33521706523737976,
+   "spearman_hist": 0.29266474496860545,
+   "ratio_median": 0.5126067568471744
+  },
+  "SOLUSDT 5m": {
+   "n": 365,
+   "pearson_pred": 0.4651872878273466,
+   "spearman_pred": 0.4930806000646558,
+   "pearson_hist": 0.4021160324465592,
+   "spearman_hist": 0.539471846366075,
+   "ratio_median": 0.732106904982718
+  },
+  "XRPUSDT 15m": {
+   "n": 365,
+   "pearson_pred": 0.5893004294552799,
+   "spearman_pred": 0.4641799700411873,
+   "pearson_hist": 0.546212760087116,
+   "spearman_hist": 0.5564267082569351,
+   "ratio_median": 0.6877787373599243
+  },
+  "XRPUSDT 1h": {
+   "n": 364,
+   "pearson_pred": 0.21416833427309037,
+   "spearman_pred": 0.26023963583116755,
+   "pearson_hist": 0.39774032644132973,
+   "spearman_hist": 0.3948288324377987,
+   "ratio_median": 0.7647561853738977
+  },
+  "XRPUSDT 4h": {
+   "n": 364,
+   "pearson_pred": 0.3778478457281519,
+   "spearman_pred": 0.300844609935519,
+   "pearson_hist": 0.48092074413863023,
+   "spearman_hist": 0.3391338424962335,
+   "ratio_median": 0.5876864864468432
+  },
+  "XRPUSDT 5m": {
+   "n": 365,
+   "pearson_pred": 0.46547288998164205,
+   "spearman_pred": 0.5578024939354381,
+   "pearson_hist": 0.4597891833170008,
+   "spearman_hist": 0.5784195368969679,
+   "ratio_median": 0.7463004128932207
+  }
+ },
+ "per_tf": {
+  "15m": {
+   "n": 1825,
+   "pearson_pred": 0.4652571583365046,
+   "spearman_pred": 0.4587269146060549,
+   "pearson_hist": 0.4242506899833682,
+   "spearman_hist": 0.4996195959034409,
+   "ratio_median": 0.6868757516177741
+  },
+  "1h": {
+   "n": 1823,
+   "pearson_pred": 0.24003303821644142,
+   "spearman_pred": 0.2884271689915421,
+   "pearson_hist": 0.41524804043148,
+   "spearman_hist": 0.38900017674290854,
+   "ratio_median": 0.7243556104737986
+  },
+  "4h": {
+   "n": 1823,
+   "pearson_pred": 0.3306077670419611,
+   "spearman_pred": 0.31128626315577135,
+   "pearson_hist": 0.3885009614327826,
+   "spearman_hist": 0.33005359022779357,
+   "ratio_median": 0.5263935742971909
+  },
+  "5m": {
+   "n": 1825,
+   "pearson_pred": 0.47628786655829286,
+   "spearman_pred": 0.566295897360169,
+   "pearson_hist": 0.46949677405595064,
+   "spearman_hist": 0.5963823498753487,
+   "ratio_median": 0.750594285484498
+  }
+ }
+}

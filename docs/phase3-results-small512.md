@@ -43,8 +43,11 @@ vengono scartati; è il parametro di default dell'inferenza Kronos e non è stat
 | **totale** | **20** | **7.296** | **51,2%** | **52,2%** |
 
 - Direzione della mediana: 1 candela **50,5%**, metà orizzonte **49,7%**, fine **51,2%**.
-- Calibrazione: dentro la banda 50% **30,5%** (atteso 50%), dentro la 80% **52,2%** (atteso 80%):
-  bande troppo strette, il modello è sovraconfidente.
+- Calibrazione: dentro la banda 50% **30,5%** (atteso 50%), dentro la 80% **52,2%** (atteso 80%).
+  Le bande però non sono strette: la p10–p90 mediana è 1,93% del prezzo contro un range
+  realizzato mediano di 1,25%. Sono **larghe e mal centrate**: la mediana sbaglia il centro di
+  0,78% in mediana, più del movimento tipico (0,65%). Dettaglio in
+  `docs/phase3-band-width.md`.
 - MAE della mediana **1,60%** del prezzo; **pinball normalizzato 0,627%** del prezzo (prima era
   in unità di prezzo, non confrontabile fra BTC e XRP).
 - Segnali **5.906** su 7.296 (80,9%): long 2.427, short 3.479, flat 1.390.
@@ -71,8 +74,8 @@ fee e senza segnali): media **−35,8%**, peggiore −45,1%, migliore −23,5%.
 
 ## Verdetto
 
-**Kronos-small non ha edge direzionale**: 50,5–51,2% è testa o croce. Le bande sono troppo
-strette (copertura 52% dove servirebbe 80%), quindi `prob_up` estremi non sono informativi.
+**Kronos-small non ha edge direzionale**: 50,5–51,2% è testa o croce. Le bande sono larghe ma
+mal centrate (copertura 52% dove servirebbe 80%), quindi `prob_up` estremi non sono informativi.
 Con le fee spot reali la strategia scende a **0,566x** (−43,8% di drawdown); anche a fee zero
 resta sotto 1 (**0,932x**). Il vantaggio apparente rispetto al buy & hold (−15,7% vs −35,8% con
 fee maker) viene dal fatto che l'anno è stato ribassista e il modello è sbilanciato short
@@ -88,5 +91,7 @@ fee maker) viene dal fatto che l'anno è stato ribassista e il modello è sbilan
 
 ## Da fare
 
-- Studio larghezza bande vs volatilità realizzata (fatto, vedi `docs/phase3-band-width.md`).
+- Studio larghezza bande vs volatilità realizzata: fatto, `docs/phase3-band-width.md`. La banda
+  correla con la volatilità realizzata (Spearman 0,753) ma **non più della persistenza**
+  (baseline storica 0,750), e a 1h/4h è peggiore.
 - Solo dopo, con ok esplicito di Sam: Base-512 e Small-256.
