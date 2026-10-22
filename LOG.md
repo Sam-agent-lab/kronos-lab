@@ -149,3 +149,13 @@ prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%)
   ma copre solo il 52,2% degli esiti invece dell'80%. Errore mediano del centro 0,78%: il
   problema è il centro, non la larghezza.
 - Nessuna GPU usata (Vietato dalla richiesta: solo VPS).
+
+## 2026-10-22 — Accuratezza per sottogruppi (Small-512, solo CPU)
+
+- `scripts/subgroup_analysis.py`: fasce di prob_up, regime, fascia oraria UTC, asset, timeframe;
+  IC di Wilson al 95%, test binomiale a una coda, correzione Benjamini-Hochberg (22 gruppi).
+- Unico gruppo significativo: `prob_up < 0,20`, n=1.611, accuratezza 54,1% (p BH 0,011), ma
+  **rendimento maker negativo** (−0,068%): win medio +1,22% contro loss medio −1,45%.
+- Asia 00–08 (52,6%, p 0,006) e ETHUSDT (52,5%) cadono dopo la correzione (p BH 0,067 e 0,206).
+- `prob_up` alto è peggio: 0,70–0,80 → 47,5%; >0,80 → 50,7%. Conferma la cattiva calibrazione.
+- Base-512 e Small-256: **annullate** su decisione di Sam.

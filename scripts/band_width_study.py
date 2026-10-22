@@ -54,7 +54,8 @@ def spearman(a: pd.Series, b: pd.Series) -> float:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--variant", default="small512")
-    parser.add_argument("--out", default="docs/phase3-band-width.md")
+    parser.add_argument("--out", default="docs/phase3-band-width.generated.md",
+                        help="tabella generata; il documento con la lettura resta a mano")
     args = parser.parse_args(argv)
 
     rows = []
