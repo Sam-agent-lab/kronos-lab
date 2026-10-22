@@ -1,1 +1,1 @@
-FASE 1|bench 100 campioni in corso|ETA ~10 min
+SPEED|4 varianti (base, threads6, ctx256, int8)|ETA ~15 min

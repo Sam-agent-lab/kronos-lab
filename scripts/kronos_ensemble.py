@@ -39,18 +39,24 @@ def forecast_paths(predictor, df: pd.DataFrame, x_timestamp, y_timestamp,
     price_cols = predictor.price_cols
     vol_col, amt_col = predictor.vol_col, predictor.amt_vol
     frame = df.copy()
+    # stessa logica dell'originale: se manca il volume si azzerano volume E amount
     if vol_col not in frame.columns:
         frame[vol_col] = 0.0
+        frame[amt_col] = 0.0
     if amt_col not in frame.columns:
         frame[amt_col] = frame[vol_col] * frame[price_cols].mean(axis=1)
 
     features = frame[price_cols + [vol_col, amt_col]].values.astype(np.float32)
+    if not np.isfinite(features).all():
+        # predict originale si ferma con ValueError: meglio fermarsi che propagare NaN
+        raise ValueError("input con NaN/inf in prezzi o volumi")
     mean, std = np.mean(features, axis=0), np.std(features, axis=0)
     normalized = np.clip((features - mean) / (std + 1e-5), -predictor.clip, predictor.clip)
 
-    x = torch.from_numpy(normalized[None, :, :])
-    x_stamp = torch.from_numpy(_stamps(x_timestamp)[None, :, :])
-    y_stamp = torch.from_numpy(_stamps(y_timestamp)[None, :, :])
+    device = predictor.device
+    x = torch.from_numpy(normalized[None, :, :]).to(device)
+    x_stamp = torch.from_numpy(_stamps(x_timestamp)[None, :, :]).to(device)
+    y_stamp = torch.from_numpy(_stamps(y_timestamp)[None, :, :]).to(device)
 
     with torch.no_grad():
         # identico all'originale: ogni campione è un batch separato
