@@ -1,0 +1,12 @@
+# dati e modelli: si riscaricano con gli script, non stanno in git
+data/*.parquet
+data/update-report.json
+third_party/
+out/
+.venv/
+__pycache__/
+*.pyc
+
+# segreti
+.env
+*.pem

@@ -1,0 +1,9 @@
+einops==0.8.1
+matplotlib==3.9.3
+numpy==2.2.6
+pandas==2.2.2
+pyarrow==18.1.0
+requests==2.32.3
+safetensors==0.6.2
+torch==2.6.0+cpu
+tqdm==4.67.1
