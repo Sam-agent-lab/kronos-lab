@@ -26,6 +26,14 @@ originale senza la media: ogni campione resta un path, le bande sono quantili ve
 - larghezza banda a fine orizzonte: 10–90% = 2,90%, 25–75% = 1,30%
 - tempo inferenza: 343–582 s su CPU (varia con il carico del VPS), caricamento modello ~7–14 s
 
+**Tabella tempo/RAM** (BTCUSDT 1h, 24 candele, CPU, un processo per misura)
+
+| campioni | inferenza | s/campione | picco RAM |
+|---|---|---|---|
+| 1 | 11,4 s | 11,4 | 524 MB |
+| 30 | 359 s | 12,0 | 2.026 MB |
+| 100 | 1.767 s (29 min) | 17,7 | 4.080 MB |
+
 **Costo:** €0 (solo API pubbliche e calcolo locale).
 
 **Conseguenza per la Fase 3:** 30 path × 24 passi costano ~6–10 minuti di CPU. Un walk-forward
