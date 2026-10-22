@@ -159,3 +159,15 @@ prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%)
 - Asia 00–08 (52,6%, p 0,006) e ETHUSDT (52,5%) cadono dopo la correzione (p BH 0,067 e 0,206).
 - `prob_up` alto è peggio: 0,70–0,80 → 47,5%; >0,80 → 50,7%. Conferma la cattiva calibrazione.
 - Base-512 e Small-256: **annullate** su decisione di Sam.
+
+## 2026-10-22 — Fase 7-lite: giudice (stadio dev, CPU only)
+
+- `scripts/fetch_derivatives.py`: funding 8h (copertura 100% del periodo) e open interest.
+  OI pubblico solo ~20 giorni → escluso dalle feature (sarebbe esistito solo nel lockbox).
+- `scripts/build_judge_dataset.py`: 5.906 segnali direzionali, target = profittevole dopo
+  0,02%/lato, feature solo con informazione disponibile all'ancora.
+- `scripts/judge_model.py`: walk-forward 5 fold con purge 3 giorni, LightGBM piccolo, logistica
+  baseline, controllo etichette mescolate, soglia scelta solo in validation (0,66).
+- Dev: giudice 193 trade, win 53,9% (IC 46,8–60,8), net maker +0,031%; senza filtro 2.231
+  trade, 48,1%, −0,102%. Controllo etichette 39 trade, 59,0%, +0,102% → nessuna prova di edge.
+- Lockbox gated da `docs/op-review-phase7.md`: attesa review Opus.

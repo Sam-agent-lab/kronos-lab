@@ -1,0 +1,22 @@
+[
+ {
+  "symbol": "ETHUSDT",
+  "funding_rows": 1260,
+  "oi_rows": 500
+ },
+ {
+  "symbol": "SOLUSDT",
+  "funding_rows": 1260,
+  "oi_rows": 500
+ },
+ {
+  "symbol": "BNBUSDT",
+  "funding_rows": 1260,
+  "oi_rows": 500
+ },
+ {
+  "symbol": "XRPUSDT",
+  "funding_rows": 1260,
+  "oi_rows": 500
+ }
+]
