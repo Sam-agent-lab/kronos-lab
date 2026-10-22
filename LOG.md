@@ -40,3 +40,50 @@ originale senza la media: ogni campione resta un path, le bande sono quantili ve
 su 12 mesi per 5 asset × 2 timeframe, con 1 path + 30 campioni, non sta nei tempi: servirà un
 piano di campionamento esplicito (es. un forecast ogni N giorni, orizzonte breve) e va
 concordato prima di partire.
+
+## 2026-10-22 — Revisione Opus e varianti di velocità (chieste da Sam prima della Fase 2)
+
+**Opus (1 call, medium)** — `docs/op-review-verdict.md`
+- Difetto confermato: `auto_regressive_inference` fa `z.reshape(-1, sample_count, …)` e poi
+  `preds = np.mean(preds, axis=1)`; `predict` riceve un solo path. La de-normalizzazione è
+  lineare, quindi la media cancella la dispersione, non la sposta.
+- Replica fedele riga per riga; differenze trovate: mancava `.to(device)`, controllo NaN
+  assente, caso limite volume/amount, e `_stamps` non verificata (la più insidiosa).
+  Rischio dichiarato: medio, con richiesta di test di equivalenza.
+- Corretto tutto + `scripts/parity_test.py`: timestamp identici, media dei path = `predict`
+  con errore relativo massimo **9,56e-08**.
+
+**Varianti di velocità** (10 path, 24 candele, stesso seed, senza nice) — `docs/phase1-speed.md`
+- `threads=6`: **−23,8%** tempo, numeri identici → adottato come default.
+- `ctx256`: **−67%** ma forecast diverso (−2,6% mediana, bande più strette).
+- `int8`: **−57,5%** ma bande ~4× più strette → non calibrate, scartato.
+
+**Decisioni per la Fase 3 (da Sam)**
+- Tre varianti: Small ctx512, Base ctx512, Small ctx256.
+- Ora del forecast giornaliero **casuale ma con seed fisso**, la stessa per tutti i modelli,
+  così non si valuta sempre la stessa fascia oraria.
+- Preventivo GPU approvato in linea di principio; **chiedere conferma prima di creare il pod**.
+
+## 2026-10-22 — Fase 2: servizio, scheduler, DB, digest
+
+- `service/core.py`: forecast con 20 path di default, bande 10/25/50/75/90, `prob_up`,
+  regime (`TRENDING_UP`/`TRENDING_DOWN` se ≥70% dei path dallo stesso lato, soglia
+  configurabile; altrimenti `CHOPPY`), `torch.set_num_threads(6)`.
+- `service/app.py`: FastAPI su **127.0.0.1:8770** — `/health`, `/latest`, `/forecast`
+  (serve la cache; `refresh=1` ricalcola). Mai esposto in rete.
+- `service/runner.py`: precalcolo alla chiusura della candela; salta se la candela è già
+  in cache. Un giro completo delle 10 serie: **~44 min** su CPU (1h ≈ 410–440 s per serie,
+  4h ≈ 103–113 s con orizzonte 6).
+- `service/store.py`: SQLite `var/forecasts.sqlite`, una riga per forecast, con payload
+  completo; UNIQUE su (symbol, tf, model, context, last_candle) contro i duplicati.
+- `service/digest.py` + cron Hermes 08:00 (`no_agent`): una riga per asset con regime,
+  `prob_up`, mediana, larghezza banda.
+- systemd utente: `kronos-svc.service` (uvicorn, Restart=always), `kronos-runner.timer`
+  ogni 10 min con `MemoryMax=6G` e `TimeoutStartSec=3600`.
+- **Fuso**: tutto in UTC (log con suffisso `Z`, `generated_at` con `+00:00`, digest dichiara
+  UTC). Il bug dei minuti negativi nel heartbeat veniva dal parsing di
+  `ActiveEnterTimestamp` (ora locale) come UTC; ora si usa il timestamp monotono.
+
+Risultati del primo giro (20 path, 10 serie): 10 righe in DB, tutte le serie in cache.
+Segnali più forti: BTC 1h `TRENDING_UP` prob_up 0.85 (+1.63%), SOL 4h `TRENDING_DOWN`
+prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%).
