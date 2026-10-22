@@ -101,3 +101,16 @@ prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%)
   giornaliera (seed fisso), orizzonte 12 candele, 30 path.
 - Preventivo aggiornato: `small512` 1,5–3 h, `base512` 2–3 h, `small256` ~1 h → **€2–5**,
   entro il tetto €30 con la Fase 4.
+
+## 2026-10-22 — Setup Runpod (modalità no user in the loop)
+
+- Skill Runpod installate per `hermes-agent` (router + lane + journey, 7 skill) con
+  `npx -y skills add runpod/runpod-plugins-official --skill '*' --agent hermes-agent --yes --global`.
+- MCP `runpod` registrato in stdio (85 tool) con wrapper `~/.local/bin/runpod-mcp` che legge
+  `RUNPOD_API_KEY` da `.env`: la chiave non sta in `config.yaml`.
+- Chiave in `.env` chmod 600, `.env` in `.gitignore`; mai stampata.
+- Verifica: `GET /v1/pods` → HTTP 200, **0 pod attivi**.
+- Credito: $30 senza ricarica automatica; tetto rigido $30 per Fase 3 + Fase 4.
+- `scripts/runpod.py`: create con controllo budget, list, delete; `docs/runpod.md` spiega i due
+  meccanismi di auto-terminate (watchdog nel pod + timer sul VPS) perché l'API REST non ha
+  `terminateAfter`.
