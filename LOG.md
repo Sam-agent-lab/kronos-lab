@@ -40,3 +40,26 @@ originale senza la media: ogni campione resta un path, le bande sono quantili ve
 su 12 mesi per 5 asset × 2 timeframe, con 1 path + 30 campioni, non sta nei tempi: servirà un
 piano di campionamento esplicito (es. un forecast ogni N giorni, orizzonte breve) e va
 concordato prima di partire.
+
+## 2026-10-22 — Revisione Opus e varianti di velocità (chieste da Sam prima della Fase 2)
+
+**Opus (1 call, medium)** — `docs/op-review-verdict.md`
+- Difetto confermato: `auto_regressive_inference` fa `z.reshape(-1, sample_count, …)` e poi
+  `preds = np.mean(preds, axis=1)`; `predict` riceve un solo path. La de-normalizzazione è
+  lineare, quindi la media cancella la dispersione, non la sposta.
+- Replica fedele riga per riga; differenze trovate: mancava `.to(device)`, controllo NaN
+  assente, caso limite volume/amount, e `_stamps` non verificata (la più insidiosa).
+  Rischio dichiarato: medio, con richiesta di test di equivalenza.
+- Corretto tutto + `scripts/parity_test.py`: timestamp identici, media dei path = `predict`
+  con errore relativo massimo **9,56e-08**.
+
+**Varianti di velocità** (10 path, 24 candele, stesso seed, senza nice) — `docs/phase1-speed.md`
+- `threads=6`: **−23,8%** tempo, numeri identici → adottato come default.
+- `ctx256`: **−67%** ma forecast diverso (−2,6% mediana, bande più strette).
+- `int8`: **−57,5%** ma bande ~4× più strette → non calibrate, scartato.
+
+**Decisioni per la Fase 3 (da Sam)**
+- Tre varianti: Small ctx512, Base ctx512, Small ctx256.
+- Ora del forecast giornaliero **casuale ma con seed fisso**, la stessa per tutti i modelli,
+  così non si valuta sempre la stessa fascia oraria.
+- Preventivo GPU approvato in linea di principio; **chiedere conferma prima di creare il pod**.
