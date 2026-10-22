@@ -1,0 +1,27 @@
+{
+ "rows": 328,
+ "series": 8,
+ "base_rate": 0.5305,
+ "from": "2025-08-15 00:00:00+00:00",
+ "to": "2025-09-08 12:00:00+00:00",
+ "lockbox_rows": 0,
+ "external_used": [
+  "btc_netflow_pct",
+  "eth_netflow_pct",
+  "stable_change_7d",
+  "ndx_ret_1d",
+  "ndx_ret_5d",
+  "dxy_ret_1d",
+  "dxy_ret_5d"
+ ],
+ "external_coverage": {
+  "btc_netflow_pct": 1.0,
+  "eth_netflow_pct": 1.0,
+  "stable_change_7d": 1.0,
+  "ndx_ret_1d": 1.0,
+  "ndx_ret_5d": 1.0,
+  "dxy_ret_1d": 1.0,
+  "dxy_ret_5d": 1.0
+ },
+ "out": "/home/sam/progetti/kronos-lab/data/path_judge_dataset.parquet"
+}

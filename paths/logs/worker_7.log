@@ -1,0 +1,8 @@
+{"event": "worker_start", "tasks": 20, "at": "2026-10-22T20:36:22Z"}
+{"event": "start_task", "task": "SOLUSDT:4h", "attempt": 1, "at": "2026-10-22T20:36:22Z"}
+{"event": "series", "symbol": "SOLUSDT", "tf": "4h", "anchors": 865, "done": 0, "pending": 865, "at": "2026-10-22T20:36:23Z"}
+{"event": "progress", "symbol": "SOLUSDT", "tf": "4h", "made": 10, "pending": 865, "last_anchor": "2025-08-19T12:00:00+00:00", "s": 4.46, "avg_s": 4.58, "at": "2026-10-22T20:37:10Z"}
+{"event": "progress", "symbol": "SOLUSDT", "tf": "4h", "made": 20, "pending": 865, "last_anchor": "2025-08-24T12:00:00+00:00", "s": 4.5, "avg_s": 4.53, "at": "2026-10-22T20:37:55Z"}
+{"event": "progress", "symbol": "SOLUSDT", "tf": "4h", "made": 30, "pending": 865, "last_anchor": "2025-08-29T12:00:00+00:00", "s": 4.5, "avg_s": 4.52, "at": "2026-10-22T20:38:40Z"}
+{"event": "progress", "symbol": "SOLUSDT", "tf": "4h", "made": 40, "pending": 865, "last_anchor": "2025-09-03T12:00:00+00:00", "s": 4.5, "avg_s": 4.52, "at": "2026-10-22T20:39:25Z"}
+{"event": "progress", "symbol": "SOLUSDT", "tf": "4h", "made": 50, "pending": 865, "last_anchor": "2025-09-08T12:00:00+00:00", "s": 4.5, "avg_s": 4.51, "at": "2026-10-22T20:40:10Z"}

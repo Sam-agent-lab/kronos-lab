@@ -1,0 +1,8 @@
+{"event": "worker_start", "tasks": 20, "at": "2026-10-22T20:36:21Z"}
+{"event": "start_task", "task": "BTCUSDT:4h", "attempt": 1, "at": "2026-10-22T20:36:21Z"}
+{"event": "series", "symbol": "BTCUSDT", "tf": "4h", "anchors": 865, "done": 0, "pending": 865, "at": "2026-10-22T20:36:22Z"}
+{"event": "progress", "symbol": "BTCUSDT", "tf": "4h", "made": 10, "pending": 865, "last_anchor": "2025-08-19T12:00:00+00:00", "s": 4.46, "avg_s": 4.31, "at": "2026-10-22T20:37:06Z"}
+{"event": "progress", "symbol": "BTCUSDT", "tf": "4h", "made": 20, "pending": 865, "last_anchor": "2025-08-24T12:00:00+00:00", "s": 4.5, "avg_s": 4.4, "at": "2026-10-22T20:37:51Z"}
+{"event": "progress", "symbol": "BTCUSDT", "tf": "4h", "made": 30, "pending": 865, "last_anchor": "2025-08-29T12:00:00+00:00", "s": 4.5, "avg_s": 4.43, "at": "2026-10-22T20:38:36Z"}
+{"event": "progress", "symbol": "BTCUSDT", "tf": "4h", "made": 40, "pending": 865, "last_anchor": "2025-09-03T12:00:00+00:00", "s": 4.5, "avg_s": 4.45, "at": "2026-10-22T20:39:21Z"}
+{"event": "progress", "symbol": "BTCUSDT", "tf": "4h", "made": 50, "pending": 865, "last_anchor": "2025-09-08T12:00:00+00:00", "s": 4.5, "avg_s": 4.46, "at": "2026-10-22T20:40:06Z"}
