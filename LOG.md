@@ -128,3 +128,13 @@ prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%)
   (nessun look-ahead), non un errore e non un buco nei dati. Nessun ricalcolo necessario.
 - `plan_days` corretto su finestra canonica di 365 giorni; `prune_window.py` ha tolto il giorno
   in più a 5m/15m (366 → 365).
+
+## 2026-10-22 — Correzioni post-review su Fase 3 (PR #4)
+
+- `backtest.py`: posizioni non sovrapposte per serie (4.968 posizioni, 1.106 segnali saltati),
+  buy & hold vero (prima prezzo → ultimo esito: media −35,8%), pinball normalizzato sul prezzo
+  (0,627%), etichetta "somma dei ritorni".
+- Numeri corretti: equity spot **0,566x** (max DD −43,8%), taker 0,726x, maker 0,843x,
+  nessuna fee 0,932x. Direzione 50,5/49,7/51,2%, copertura 80% al 52,2%.
+- Documento `docs/phase3-results-small512.md` riscritto: fatti verificati sui file di risultato,
+  nota su `top_p=0.9` e 30 path, spiegazione delle 4 serie con 364 giorni.
