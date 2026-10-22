@@ -10,3 +10,7 @@ __pycache__/
 # segreti
 .env
 *.pem
+
+# runtime: cache, DB, log (rigenerabili)
+var/
+PHASE.txt
