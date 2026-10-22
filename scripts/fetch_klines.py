@@ -26,6 +26,8 @@ DATA = ROOT / "data"
 BASE = "https://api.binance.com/api/v3/klines"
 SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "XRPUSDT"]
 TIMEFRAMES = {"1h": 60, "4h": 240}
+SHORT_TFS = {"5m": 5, "15m": 15}
+DEFAULT_MONTHS = 24
 PAGE = 1000
 COLUMNS = ["open_time", "open", "high", "low", "close", "volume", "close_time",
            "quote_volume", "trades", "taker_base", "taker_quote", "ignore"]
@@ -72,7 +74,15 @@ def download(symbol: str, interval: str, start_ms: int | None = None) -> pd.Data
     return frame[["open_time", "open", "high", "low", "close", "volume", "close_time"]]
 
 
-def update(symbol: str, interval: str, full: bool = False) -> dict:
+def _start_ms(months: int | None) -> int | None:
+    """Finestra parziale: il timeframe corto non serve su 9 anni di storia."""
+    if not months:
+        return None
+    return int((pd.Timestamp.now(tz="UTC") - pd.DateOffset(months=months)).timestamp() * 1000)
+
+
+def update(symbol: str, interval: str, full: bool = False,
+           months: int | None = None) -> dict:
     DATA.mkdir(exist_ok=True)
     path = DATA / f"{symbol}_{interval}.parquet"
     if path.exists() and not full:
@@ -87,7 +97,7 @@ def update(symbol: str, interval: str, full: bool = False) -> dict:
         merged.to_parquet(path, index=False)
         return {"symbol": symbol, "tf": interval, "rows": len(merged),
                 "added": len(merged) - len(existing)}
-    fresh = download(symbol, interval, None)
+    fresh = download(symbol, interval, _start_ms(months))
     fresh.to_parquet(path, index=False)
     return {"symbol": symbol, "tf": interval, "rows": len(fresh), "added": len(fresh)}
 
@@ -96,11 +106,17 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--full", action="store_true", help="riscarica da zero")
     parser.add_argument("--symbols", nargs="*", default=SYMBOLS)
+    parser.add_argument("--tf", nargs="*", default=None,
+                        help="timeframe da scaricare (default 1h 4h); 5m/15m usano --months")
+    parser.add_argument("--months", type=int, default=DEFAULT_MONTHS,
+                        help="finestra in mesi per i timeframe corti (default 24)")
     args = parser.parse_args(argv)
     report = []
+    intervals = args.tf or list(TIMEFRAMES)
     for symbol in args.symbols:
-        for interval in TIMEFRAMES:
-            row = update(symbol, interval, full=args.full)
+        for interval in intervals:
+            months = args.months if interval in SHORT_TFS else None
+            row = update(symbol, interval, full=args.full, months=months)
             report.append(row)
             print(json.dumps(row), flush=True)
     (DATA / "update-report.json").write_text(json.dumps(report, indent=1), encoding="utf-8")

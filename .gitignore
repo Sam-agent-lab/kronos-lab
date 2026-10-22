@@ -14,3 +14,5 @@ __pycache__/
 # runtime: cache, DB, log (rigenerabili)
 var/
 PHASE.txt
+pods/
+pod-results/

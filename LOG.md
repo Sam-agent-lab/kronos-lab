@@ -114,3 +114,17 @@ prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%)
 - `scripts/runpod.py`: create con controllo budget, list, delete; `docs/runpod.md` spiega i due
   meccanismi di auto-terminate (watchdog nel pod + timer sul VPS) perché l'API REST non ha
   `terminateAfter`.
+
+## 2026-10-22 — Fase 3, run Small-512 completato
+
+- Pod: A40 46 GB secure EU-SE-1 ($0,59/h), 4 processi in parallelo (1h, 4h, 5m, 15m) come
+  autorizzato da Sam. GPU al 100%, VRAM 4,9/46 GB, nessun OOM, nessun duplicato.
+- 7.296 forecast su 20 serie, ~2,0 s per forecast con 30 path (CPU: 72–79 s con 5 path).
+- **Costo reale: $1,78** (3h00m di pod, saldo 30,00 → 28,22). Pod distrutto, lista vuota.
+- Risultati: direzione 50,5% / 49,7% / 51,2%; copertura banda 80% 52,2%; equity spot 0,510x
+  (max DD −49,3%), maker 0,819x, buy & hold 0,820x, senza fee 0,922x. **Non batte il random walk.**
+- 4 serie con 364 giorni invece di 365 (1h BNB, 1h XRP, 4h SOL, 4h XRP): l'ancora del 2026-10-21
+  cadeva così tardi che le 24/6 candele di esito non erano ancora chiuse → scarto per progetto
+  (nessun look-ahead), non un errore e non un buco nei dati. Nessun ricalcolo necessario.
+- `plan_days` corretto su finestra canonica di 365 giorni; `prune_window.py` ha tolto il giorno
+  in più a 5m/15m (366 → 365).
