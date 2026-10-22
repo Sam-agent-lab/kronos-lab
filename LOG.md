@@ -87,3 +87,30 @@ concordato prima di partire.
 Risultati del primo giro (20 path, 10 serie): 10 righe in DB, tutte le serie in cache.
 Segnali più forti: BTC 1h `TRENDING_UP` prob_up 0.85 (+1.63%), SOL 4h `TRENDING_DOWN`
 prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%).
+
+## 2026-10-22 — Aggiornamenti Fase 3 chiesti da Sam
+
+- **Pod separati**: uno per variante, ordine `small512` → (risultati + ok di Sam) → `base512`,
+  `small256`. Mai due pod insieme, auto-terminate 3 h ciascuno.
+- **Ripresa**: ogni forecast appeso subito a `results/<variant>/<tf>_<symbol>.jsonl`, `state.json`
+  per serie, e il VPS tira i risultati dal pod ogni 10 minuti con rsync (nessuna chiave del VPS
+  sul pod). Pod morto = si riparte dal punto di stop.
+- **Fee**: scenario principale 0,1% per lato (Bybit EU **spot**), alternativo futures
+  0,02% maker / 0,05% taker. Soglie long ≥0,6 / short ≤0,4 fissate prima.
+- **Short-term**: 5m e 15m come esperimento separato, **solo** `small512`, stessa ora casuale
+  giornaliera (seed fisso), orizzonte 12 candele, 30 path.
+- Preventivo aggiornato: `small512` 1,5–3 h, `base512` 2–3 h, `small256` ~1 h → **€2–5**,
+  entro il tetto €30 con la Fase 4.
+
+## 2026-10-22 — Setup Runpod (modalità no user in the loop)
+
+- Skill Runpod installate per `hermes-agent` (router + lane + journey, 7 skill) con
+  `npx -y skills add runpod/runpod-plugins-official --skill '*' --agent hermes-agent --yes --global`.
+- MCP `runpod` registrato in stdio (85 tool) con wrapper `~/.local/bin/runpod-mcp` che legge
+  `RUNPOD_API_KEY` da `.env`: la chiave non sta in `config.yaml`.
+- Chiave in `.env` chmod 600, `.env` in `.gitignore`; mai stampata.
+- Verifica: `GET /v1/pods` → HTTP 200, **0 pod attivi**.
+- Credito: $30 senza ricarica automatica; tetto rigido $30 per Fase 3 + Fase 4.
+- `scripts/runpod.py`: create con controllo budget, list, delete; `docs/runpod.md` spiega i due
+  meccanismi di auto-terminate (watchdog nel pod + timer sul VPS) perché l'API REST non ha
+  `terminateAfter`.
