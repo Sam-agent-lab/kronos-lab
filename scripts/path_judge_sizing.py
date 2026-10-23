@@ -25,7 +25,7 @@ PRED = ROOT / "results" / "path_judge" / "validation_predictions.parquet"
 DATA = ROOT / "data" / "path_judge_dataset.parquet"
 OUT = ROOT / "results" / "path_judge" / "sizing.json"
 STEP = {"1h": 60, "4h": 240}
-FEES = {"maker 0.02%": 0.0002, "spot 0.1%": 0.001}
+FEES = {"maker 0.02%": 0.0002, "taker 0.05%": 0.0005, "spot 0.1%": 0.001}
 ASSETS = 10
 
 
@@ -96,7 +96,7 @@ def summarise(frame: pd.DataFrame, fee: float) -> dict:
 def main() -> int:
     predictions = pd.read_parquet(PRED)
     dataset = pd.read_parquet(DATA)[["anchor", "symbol", "tf", "last_price", "realized_final",
-                                     "gross_return", "is_lockbox"]]
+                                     "gross_return", "direction", "is_lockbox"]]
     frame = predictions.merge(dataset, on=["anchor", "symbol", "tf"], how="left",
                               suffixes=("", "_ds"))
 
@@ -115,7 +115,16 @@ def main() -> int:
         rows = frame.set_index(["anchor", "symbol", "tf"]).loc[keys].reset_index()
         report["models"][name] = {"trades": int(len(rows)),
                                   **{fee_name: summarise(rows, fee)
-                                     for fee_name, fee in FEES.items()}}
+                                     for fee_name, fee in FEES.items()},
+                                  "by_side": {}}
+        for side, label in ((1.0, "long"), (-1.0, "short")):
+            side_rows = rows[rows["direction"] == side]
+            if side_rows.empty:
+                continue
+            report["models"][name]["by_side"][label] = {
+                "trades": int(len(side_rows)),
+                **{fee_name: summarise(side_rows, fee)
+                   for fee_name, fee in FEES.items()}}
 
     # buy & hold: per ogni asset, primo prezzo del periodo → ultimo esito realizzato
     hold_rows = []
@@ -142,6 +151,15 @@ def main() -> int:
                          f"{100 * part['win_rate']:.1f}% | {100 * part['total_return']:+.2f}% | "
                          f"{100 * part['mean_per_trade']:+.3f}% | {100 * part['max_dd']:.1f}% | "
                          f"{part['sleeves_positive']}/10 |")
+    lines += ["", "| modello | lato | trade | win rate (maker) | rendimento totale maker | "
+                  "rendimento totale spot |", "|---|---|---|---|---|---|"]
+    for name in list(report["models"]) + ["Buy & hold (10 sleeve)"]:
+        block = report["buy_hold"] if name.startswith("Buy") else report["models"][name]
+        for side, part in (block.get("by_side") or {}).items():
+            lines.append(f"| {name} | {side} | {part['trades']} | "
+                         f"{100 * part['maker 0.02%']['win_rate']:.1f}% | "
+                         f"{100 * part['maker 0.02%']['total_return']:+.2f}% | "
+                         f"{100 * part['spot 0.1%']['total_return']:+.2f}% |")
     print("\n".join(lines))
     return 0
 

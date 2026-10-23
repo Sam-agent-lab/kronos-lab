@@ -73,3 +73,20 @@ validation (0,70): non si cambia per far tornare i conti.
 3. **Fill-rate risk**: con fee spot (0,1% per lato) il vantaggio di B sparisce (+0,24% contro
    +1,63% di A). Il verdetto sul lockbox va dato **anche** in quello scenario, dichiarando che il
    risultato con fee maker presuppone di riuscire a eseguire sempre come maker.
+
+
+## Long/short, taker e confronto con Kronos senza filtro (aggiunte richieste)
+
+Sulla validazione, **il vantaggio è quasi tutto short**: Giudice B short 752 trade, 56,2%,
++19,65% maker; long 142 trade, 52,8%, **−2,71%** (e −4,91% con fee spot). Kronos senza filtro:
+short +48,27%, long −15,69%. Il periodo di validazione era ribassista: il verdetto sul lockbox
+va dato anche separando i due lati, e va dichiarato che un edge solo-short in un mercato in
+discesa non è la stessa cosa di un modello con capacità direzionale.
+
+Con **fee taker 0,05% per lato** (il ripiego realistico quando i limit non si riempiono):
+Giudice B +9,85%, Giudice A +3,99%, Kronos senza filtro +13,35%.
+
+**Kronos senza filtro batte B sul rendimento totale con fee maker** (+31,66% contro +16,06%), ma
+con drawdown −17,8% contro −9,3% e rovina sulle fee spot (−11,72%). Il punto da verificare è se
+il filtro di B valga il costo in rendimento: sul lockbox va riportato anche questo confronto,
+non solo A contro B.

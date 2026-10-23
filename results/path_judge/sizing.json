@@ -25,6 +25,29 @@
     "mean_per_trade": 0.0025456267866964003,
     "capital_utilisation": 0.12150537634408602
    },
+   "taker 0.05%": {
+    "total_return": 0.039857267734148924,
+    "equity_final": 1.0398572677341489,
+    "max_dd": -0.04081615686967133,
+    "assets_traded": 10,
+    "sleeves_positive": 5,
+    "per_asset": {
+     "ADAUSDT": 0.29809,
+     "AVAXUSDT": 0.17369,
+     "BNBUSDT": -0.00899,
+     "BTCUSDT": -0.10558,
+     "DOGEUSDT": 0.13704,
+     "ETHUSDT": -0.00724,
+     "LINKUSDT": -0.11469,
+     "SOLUSDT": 0.06421,
+     "TRXUSDT": 0.04949,
+     "XRPUSDT": -0.08746
+    },
+    "trades": 226,
+    "win_rate": 0.5221238938053098,
+    "mean_per_trade": 0.001945626786696399,
+    "capital_utilisation": 0.12150537634408602
+   },
    "spot 0.1%": {
     "total_return": 0.016254676689259194,
     "equity_final": 1.0162546766892593,
@@ -47,6 +70,152 @@
     "win_rate": 0.5088495575221239,
     "mean_per_trade": 0.0009456267866963981,
     "capital_utilisation": 0.12150537634408602
+   },
+   "by_side": {
+    "long": {
+     "trades": 51,
+     "maker 0.02%": {
+      "total_return": 0.017122734912139958,
+      "equity_final": 1.01712273491214,
+      "max_dd": -0.030038646221051457,
+      "assets_traded": 10,
+      "sleeves_positive": 6,
+      "per_asset": {
+       "ADAUSDT": 0.20198,
+       "AVAXUSDT": -0.05505,
+       "BNBUSDT": 0.00254,
+       "BTCUSDT": -0.03309,
+       "DOGEUSDT": -0.01505,
+       "ETHUSDT": -0.07307,
+       "LINKUSDT": 0.00707,
+       "SOLUSDT": 0.01454,
+       "TRXUSDT": 0.03634,
+       "XRPUSDT": 0.08502
+      },
+      "trades": 51,
+      "win_rate": 0.5294117647058824,
+      "mean_per_trade": 0.0033905557289892817,
+      "capital_utilisation": 0.04421965317919075
+     },
+     "taker 0.05%": {
+      "total_return": 0.014022820441900952,
+      "equity_final": 1.0140228204419008,
+      "max_dd": -0.0315012890906714,
+      "assets_traded": 10,
+      "sleeves_positive": 5,
+      "per_asset": {
+       "ADAUSDT": 0.19851,
+       "AVAXUSDT": -0.05848,
+       "BNBUSDT": -0.00466,
+       "BTCUSDT": -0.03601,
+       "DOGEUSDT": -0.01743,
+       "ETHUSDT": -0.07423,
+       "LINKUSDT": 0.00406,
+       "SOLUSDT": 0.01211,
+       "TRXUSDT": 0.03388,
+       "XRPUSDT": 0.08247
+      },
+      "trades": 51,
+      "win_rate": 0.5098039215686274,
+      "mean_per_trade": 0.00279055572898928,
+      "capital_utilisation": 0.04421965317919075
+     },
+     "spot 0.1%": {
+      "total_return": 0.008878118540654234,
+      "equity_final": 1.0088781185406543,
+      "max_dd": -0.033934765189597926,
+      "assets_traded": 10,
+      "sleeves_positive": 4,
+      "per_asset": {
+       "ADAUSDT": 0.19274,
+       "AVAXUSDT": -0.06417,
+       "BNBUSDT": -0.01654,
+       "BTCUSDT": -0.04086,
+       "DOGEUSDT": -0.02137,
+       "ETHUSDT": -0.07615,
+       "LINKUSDT": -0.00096,
+       "SOLUSDT": 0.00808,
+       "TRXUSDT": 0.02978,
+       "XRPUSDT": 0.07823
+      },
+      "trades": 51,
+      "win_rate": 0.5098039215686274,
+      "mean_per_trade": 0.0017905557289892794,
+      "capital_utilisation": 0.04421965317919075
+     }
+    },
+    "short": {
+     "trades": 175,
+     "maker 0.02%": {
+      "total_return": 0.03841879896951998,
+      "equity_final": 1.03841879896952,
+      "max_dd": -0.05221670659423272,
+      "assets_traded": 10,
+      "sleeves_positive": 7,
+      "per_asset": {
+       "ADAUSDT": 0.10006,
+       "AVAXUSDT": 0.26451,
+       "BNBUSDT": 0.00586,
+       "BTCUSDT": -0.06318,
+       "DOGEUSDT": 0.17248,
+       "ETHUSDT": 0.07747,
+       "LINKUSDT": -0.10648,
+       "SOLUSDT": 0.06479,
+       "TRXUSDT": 0.01998,
+       "XRPUSDT": -0.15131
+      },
+      "trades": 175,
+      "win_rate": 0.5428571428571428,
+      "mean_per_trade": 0.0022993903520853315,
+      "capital_utilisation": 0.09408602150537634
+     },
+     "taker 0.05%": {
+      "total_return": 0.027405318454341354,
+      "equity_final": 1.0274053184543415,
+      "max_dd": -0.05296602506532866,
+      "assets_traded": 10,
+      "sleeves_positive": 6,
+      "per_asset": {
+       "ADAUSDT": 0.08308,
+       "AVAXUSDT": 0.24659,
+       "BNBUSDT": -0.00435,
+       "BTCUSDT": -0.07217,
+       "DOGEUSDT": 0.15721,
+       "ETHUSDT": 0.07236,
+       "LINKUSDT": -0.11826,
+       "SOLUSDT": 0.05148,
+       "TRXUSDT": 0.01511,
+       "XRPUSDT": -0.15698
+      },
+      "trades": 175,
+      "win_rate": 0.5257142857142857,
+      "mean_per_trade": 0.0016993903520853308,
+      "capital_utilisation": 0.09408602150537634
+     },
+     "spot 0.1%": {
+      "total_return": 0.009326012656198646,
+      "equity_final": 1.0093260126561987,
+      "max_dd": -0.054213877857592796,
+      "assets_traded": 10,
+      "sleeves_positive": 6,
+      "per_asset": {
+       "ADAUSDT": 0.05534,
+       "AVAXUSDT": 0.21726,
+       "BNBUSDT": -0.02116,
+       "BTCUSDT": -0.08697,
+       "DOGEUSDT": 0.13217,
+       "ETHUSDT": 0.06388,
+       "LINKUSDT": -0.13758,
+       "SOLUSDT": 0.02965,
+       "TRXUSDT": 0.00703,
+       "XRPUSDT": -0.16636
+      },
+      "trades": 175,
+      "win_rate": 0.5085714285714286,
+      "mean_per_trade": 0.0006993903520853298,
+      "capital_utilisation": 0.09408602150537634
+     }
+    }
    }
   },
   "Giudice B (soglia 0,60)": {
@@ -74,6 +243,29 @@
     "mean_per_trade": 0.0017752711091068944,
     "capital_utilisation": 0.4721830985915493
    },
+   "taker 0.05%": {
+    "total_return": 0.09851959576848758,
+    "equity_final": 1.0985195957684877,
+    "max_dd": -0.10218674665335659,
+    "assets_traded": 10,
+    "sleeves_positive": 5,
+    "per_asset": {
+     "ADAUSDT": -0.01346,
+     "AVAXUSDT": 0.43245,
+     "BNBUSDT": 0.26445,
+     "BTCUSDT": -0.18524,
+     "DOGEUSDT": 0.65743,
+     "ETHUSDT": -0.2526,
+     "LINKUSDT": 0.10849,
+     "SOLUSDT": -0.0785,
+     "TRXUSDT": -0.0342,
+     "XRPUSDT": 0.08638
+    },
+    "trades": 894,
+    "win_rate": 0.5436241610738255,
+    "mean_per_trade": 0.0011752711091068935,
+    "capital_utilisation": 0.4721830985915493
+   },
    "spot 0.1%": {
     "total_return": 0.0024202029892511634,
     "equity_final": 1.002420202989251,
@@ -96,6 +288,152 @@
     "win_rate": 0.5178970917225951,
     "mean_per_trade": 0.0001752711091068927,
     "capital_utilisation": 0.4721830985915493
+   },
+   "by_side": {
+    "long": {
+     "trades": 142,
+     "maker 0.02%": {
+      "total_return": -0.02705003092731726,
+      "equity_final": 0.9729499690726827,
+      "max_dd": -0.06253777403610661,
+      "assets_traded": 10,
+      "sleeves_positive": 6,
+      "per_asset": {
+       "ADAUSDT": -0.22659,
+       "AVAXUSDT": -0.09306,
+       "BNBUSDT": 0.08096,
+       "BTCUSDT": -0.07608,
+       "DOGEUSDT": 0.01581,
+       "ETHUSDT": -0.06265,
+       "LINKUSDT": 0.0316,
+       "SOLUSDT": 0.00157,
+       "TRXUSDT": 5e-05,
+       "XRPUSDT": 0.05789
+      },
+      "trades": 142,
+      "win_rate": 0.528169014084507,
+      "mean_per_trade": -0.0015995180785973076,
+      "capital_utilisation": 0.07634408602150537
+     },
+     "taker 0.05%": {
+      "total_return": -0.035390428703727037,
+      "equity_final": 0.964609571296273,
+      "max_dd": -0.06743161199826919,
+      "assets_traded": 10,
+      "sleeves_positive": 4,
+      "per_asset": {
+       "ADAUSDT": -0.23365,
+       "AVAXUSDT": -0.10125,
+       "BNBUSDT": 0.06362,
+       "BTCUSDT": -0.08165,
+       "DOGEUSDT": 0.00852,
+       "ETHUSDT": -0.06718,
+       "LINKUSDT": 0.0236,
+       "SOLUSDT": -0.00681,
+       "TRXUSDT": -0.0107,
+       "XRPUSDT": 0.05159
+      },
+      "trades": 142,
+      "win_rate": 0.5211267605633803,
+      "mean_per_trade": -0.0021995180785973085,
+      "capital_utilisation": 0.07634408602150537
+     },
+     "spot 0.1%": {
+      "total_return": -0.04912259931391646,
+      "equity_final": 0.9508774006860835,
+      "max_dd": -0.07553354607151241,
+      "assets_traded": 10,
+      "sleeves_positive": 3,
+      "per_asset": {
+       "ADAUSDT": -0.24529,
+       "AVAXUSDT": -0.11474,
+       "BNBUSDT": 0.03532,
+       "BTCUSDT": -0.09087,
+       "DOGEUSDT": -0.00351,
+       "ETHUSDT": -0.07469,
+       "LINKUSDT": 0.01039,
+       "SOLUSDT": -0.02064,
+       "TRXUSDT": -0.02837,
+       "XRPUSDT": 0.04117
+      },
+      "trades": 142,
+      "win_rate": 0.5,
+      "mean_per_trade": -0.0031995180785973094,
+      "capital_utilisation": 0.07634408602150537
+     }
+    },
+    "short": {
+     "trades": 752,
+     "maker 0.02%": {
+      "total_return": 0.1965296144016042,
+      "equity_final": 1.1965296144016042,
+      "max_dd": -0.08434823410695269,
+      "assets_traded": 10,
+      "sleeves_positive": 7,
+      "per_asset": {
+       "ADAUSDT": 0.36265,
+       "AVAXUSDT": 0.67475,
+       "BNBUSDT": 0.24489,
+       "BTCUSDT": -0.07634,
+       "DOGEUSDT": 0.73619,
+       "ETHUSDT": -0.16929,
+       "LINKUSDT": 0.14435,
+       "SOLUSDT": -0.02591,
+       "TRXUSDT": 0.00116,
+       "XRPUSDT": 0.07285
+      },
+      "trades": 752,
+      "win_rate": 0.5625,
+      "mean_per_trade": 0.002412531833380827,
+      "capital_utilisation": 0.3971830985915493
+     },
+     "taker 0.05%": {
+      "total_return": 0.14218862754810435,
+      "equity_final": 1.1421886275481044,
+      "max_dd": -0.08663189666820859,
+      "assets_traded": 10,
+      "sleeves_positive": 6,
+      "per_asset": {
+       "ADAUSDT": 0.28733,
+       "AVAXUSDT": 0.59382,
+       "BNBUSDT": 0.18881,
+       "BTCUSDT": -0.1128,
+       "DOGEUSDT": 0.64342,
+       "ETHUSDT": -0.19878,
+       "LINKUSDT": 0.08294,
+       "SOLUSDT": -0.07218,
+       "TRXUSDT": -0.02376,
+       "XRPUSDT": 0.03308
+      },
+      "trades": 752,
+      "win_rate": 0.5478723404255319,
+      "mean_per_trade": 0.0018125318333808253,
+      "capital_utilisation": 0.3971830985915493
+     },
+     "spot 0.1%": {
+      "total_return": 0.05718905506520463,
+      "equity_final": 1.0571890550652046,
+      "max_dd": -0.09145033422937454,
+      "assets_traded": 10,
+      "sleeves_positive": 4,
+      "per_asset": {
+       "ADAUSDT": 0.17084,
+       "AVAXUSDT": 0.46743,
+       "BNBUSDT": 0.10084,
+       "BTCUSDT": -0.17043,
+       "DOGEUSDT": 0.49959,
+       "ETHUSDT": -0.24565,
+       "LINKUSDT": -0.01225,
+       "SOLUSDT": -0.14451,
+       "TRXUSDT": -0.06396,
+       "XRPUSDT": -0.03001
+      },
+      "trades": 752,
+      "win_rate": 0.5212765957446809,
+      "mean_per_trade": 0.0008125318333808243,
+      "capital_utilisation": 0.3971830985915493
+     }
+    }
    }
   },
   "Kronos senza filtro": {
@@ -123,6 +461,29 @@
     "mean_per_trade": 0.0010068387649984187,
     "capital_utilisation": 1.318838028169014
    },
+   "taker 0.05%": {
+    "total_return": 0.13345653025198168,
+    "equity_final": 1.1334565302519817,
+    "max_dd": -0.24503270694826884,
+    "assets_traded": 10,
+    "sleeves_positive": 5,
+    "per_asset": {
+     "ADAUSDT": 1.46264,
+     "AVAXUSDT": 0.90269,
+     "BNBUSDT": 0.3325,
+     "BTCUSDT": -0.33058,
+     "DOGEUSDT": 0.16328,
+     "ETHUSDT": -0.6302,
+     "LINKUSDT": -0.08102,
+     "SOLUSDT": -0.48191,
+     "TRXUSDT": -0.23242,
+     "XRPUSDT": 0.22959
+    },
+    "trades": 2497,
+    "win_rate": 0.5074088906688026,
+    "mean_per_trade": 0.0004068387649984177,
+    "capital_utilisation": 1.318838028169014
+   },
    "spot 0.1%": {
     "total_return": -0.11716221205082275,
     "equity_final": 0.8828377879491772,
@@ -145,6 +506,152 @@
     "win_rate": 0.4857829395274329,
     "mean_per_trade": -0.0005931612350015832,
     "capital_utilisation": 1.318838028169014
+   },
+   "by_side": {
+    "long": {
+     "trades": 587,
+     "maker 0.02%": {
+      "total_return": -0.15691605822834037,
+      "equity_final": 0.8430839417716596,
+      "max_dd": -0.2448768483874041,
+      "assets_traded": 10,
+      "sleeves_positive": 3,
+      "per_asset": {
+       "ADAUSDT": 0.09504,
+       "AVAXUSDT": -0.07985,
+       "BNBUSDT": 0.00335,
+       "BTCUSDT": -0.23562,
+       "DOGEUSDT": -0.20163,
+       "ETHUSDT": -0.45353,
+       "LINKUSDT": -0.228,
+       "SOLUSDT": -0.40259,
+       "TRXUSDT": -0.06744,
+       "XRPUSDT": 0.00111
+      },
+      "trades": 587,
+      "win_rate": 0.4940374787052811,
+      "mean_per_trade": -0.002669389437027936,
+      "capital_utilisation": 0.31003521126760564
+     },
+     "taker 0.05%": {
+      "total_return": -0.18626343776080603,
+      "equity_final": 0.813736562239194,
+      "max_dd": -0.2631162341197777,
+      "assets_traded": 10,
+      "sleeves_positive": 1,
+      "per_asset": {
+       "ADAUSDT": 0.06653,
+       "AVAXUSDT": -0.10926,
+       "BNBUSDT": -0.04428,
+       "BTCUSDT": -0.26367,
+       "DOGEUSDT": -0.22535,
+       "ETHUSDT": -0.47306,
+       "LINKUSDT": -0.25499,
+       "SOLUSDT": -0.4201,
+       "TRXUSDT": -0.11226,
+       "XRPUSDT": -0.02618
+      },
+      "trades": 587,
+      "win_rate": 0.4855195911413969,
+      "mean_per_trade": -0.0032693894370279366,
+      "capital_utilisation": 0.31003521126760564
+     },
+     "spot 0.1%": {
+      "total_return": -0.2328477253764035,
+      "equity_final": 0.7671522746235965,
+      "max_dd": -0.2925536382903442,
+      "assets_traded": 10,
+      "sleeves_positive": 1,
+      "per_asset": {
+       "ADAUSDT": 0.02061,
+       "AVAXUSDT": -0.15623,
+       "BNBUSDT": -0.11875,
+       "BTCUSDT": -0.30819,
+       "DOGEUSDT": -0.26336,
+       "ETHUSDT": -0.5041,
+       "LINKUSDT": -0.29793,
+       "SOLUSDT": -0.44818,
+       "TRXUSDT": -0.18229,
+       "XRPUSDT": -0.07005
+      },
+      "trades": 587,
+      "win_rate": 0.45826235093696766,
+      "mean_per_trade": -0.0042693894370279374,
+      "capital_utilisation": 0.31003521126760564
+     }
+    },
+    "short": {
+     "trades": 1910,
+     "maker 0.02%": {
+      "total_return": 0.4826828076212998,
+      "equity_final": 1.4826828076212997,
+      "max_dd": -0.1237384644111843,
+      "assets_traded": 10,
+      "sleeves_positive": 8,
+      "per_asset": {
+       "ADAUSDT": 1.61629,
+       "AVAXUSDT": 1.40021,
+       "BNBUSDT": 0.53993,
+       "BTCUSDT": 0.01958,
+       "DOGEUSDT": 0.6928,
+       "ETHUSDT": -0.21657,
+       "LINKUSDT": 0.38068,
+       "SOLUSDT": 0.01348,
+       "TRXUSDT": -0.04474,
+       "XRPUSDT": 0.42516
+      },
+      "trades": 1910,
+      "win_rate": 0.5272251308900524,
+      "mean_per_trade": 0.002136653400909136,
+      "capital_utilisation": 1.0088028169014085
+     },
+     "taker 0.05%": {
+      "total_return": 0.3206174476288617,
+      "equity_final": 1.3206174476288617,
+      "max_dd": -0.13728559260299233,
+      "assets_traded": 10,
+      "sleeves_positive": 6,
+      "per_asset": {
+       "ADAUSDT": 1.30902,
+       "AVAXUSDT": 1.13607,
+       "BNBUSDT": 0.39423,
+       "BTCUSDT": -0.09086,
+       "DOGEUSDT": 0.50169,
+       "ETHUSDT": -0.2982,
+       "LINKUSDT": 0.23352,
+       "SOLUSDT": -0.10658,
+       "TRXUSDT": -0.13536,
+       "XRPUSDT": 0.26264
+      },
+      "trades": 1910,
+      "win_rate": 0.5141361256544502,
+      "mean_per_trade": 0.001536653400909135,
+      "capital_utilisation": 1.0088028169014085
+     },
+     "spot 0.1%": {
+      "total_return": 0.08892197582472647,
+      "equity_final": 1.0889219758247264,
+      "max_dd": -0.1996045871627845,
+      "assets_traded": 10,
+      "sleeves_positive": 6,
+      "per_asset": {
+       "ADAUSDT": 0.87467,
+       "AVAXUSDT": 0.75856,
+       "BNBUSDT": 0.18123,
+       "BTCUSDT": -0.24911,
+       "DOGEUSDT": 0.22971,
+       "ETHUSDT": -0.41588,
+       "LINKUSDT": 0.02212,
+       "SOLUSDT": -0.27604,
+       "TRXUSDT": -0.26778,
+       "XRPUSDT": 0.03174
+      },
+      "trades": 1910,
+      "win_rate": 0.4942408376963351,
+      "mean_per_trade": 0.0005366534009091343,
+      "capital_utilisation": 1.0088028169014085
+     }
+    }
    }
   }
  },
@@ -171,6 +678,29 @@
    "trades": 10,
    "win_rate": 0.0,
    "mean_per_trade": -0.5615190498114235,
+   "capital_utilisation": 1.5
+  },
+  "taker 0.05%": {
+   "total_return": -0.5621190498114235,
+   "equity_final": 0.43788095018857653,
+   "max_dd": -0.5029133503340303,
+   "assets_traded": 10,
+   "sleeves_positive": 0,
+   "per_asset": {
+    "ADAUSDT": -0.82268,
+    "AVAXUSDT": -0.75172,
+    "BNBUSDT": -0.31522,
+    "BTCUSDT": -0.4508,
+    "DOGEUSDT": -0.69994,
+    "ETHUSDT": -0.59206,
+    "LINKUSDT": -0.63394,
+    "SOLUSDT": -0.6216,
+    "TRXUSDT": -0.08222,
+    "XRPUSDT": -0.651
+   },
+   "trades": 10,
+   "win_rate": 0.0,
+   "mean_per_trade": -0.5621190498114235,
    "capital_utilisation": 1.5
   },
   "spot 0.1%": {

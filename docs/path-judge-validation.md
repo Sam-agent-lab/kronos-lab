@@ -24,19 +24,46 @@ riportano ma non decidono. Le soglie restano quelle scelte in validation: A 0,70
 | modello | fee | trade | win rate | rendimento totale | per trade | max DD | sleeve positive |
 |---|---|---|---|---|---|---|---|
 | Giudice A (0,70) | maker 0,02% | 226 | 54,0% | **+5,43%** | +0,255% | −3,7% | 6/10 |
+| Giudice A (0,70) | taker 0,05% | 226 | 52,2% | +3,99% | +0,195% | −4,1% | 5/10 |
 | Giudice A (0,70) | spot 0,1% | 226 | 50,9% | +1,63% | +0,095% | −4,6% | 5/10 |
 | Giudice B (0,60) | maker 0,02% | 894 | 55,7% | **+16,06%** | +0,178% | −9,3% | 7/10 |
+| Giudice B (0,60) | taker 0,05% | 894 | 54,4% | +9,85% | +0,118% | −10,2% | 5/10 |
 | Giudice B (0,60) | spot 0,1% | 894 | 51,8% | **+0,24%** | +0,018% | −11,7% | 4/10 |
 | Kronos senza filtro | maker 0,02% | 2.497 | 51,9% | +31,66% | +0,101% | −17,8% | 6/10 |
+| Kronos senza filtro | taker 0,05% | 2.497 | 50,7% | +13,35% | +0,041% | −24,5% | 5/10 |
 | Kronos senza filtro | spot 0,1% | 2.497 | 48,6% | **−11,72%** | −0,059% | −35,7% | 3/10 |
 | Buy & hold (10 sleeve) | maker 0,02% | 10 | 0,0% | **−56,15%** | — | −50,2% | 0/10 |
 | Buy & hold (10 sleeve) | spot 0,1% | 10 | 0,0% | −56,31% | — | −50,4% | 0/10 |
 
-Lettura: con il sizing corretto **B batte A sul rendimento totale** (+16,06% contro +5,43%) ma
-**solo con fee maker**: alle fee spot B scende a +0,24%, sotto A (+1,63%). Il vantaggio di B è
-interamente appeso al fatto di pagare 0,02% e non 0,1% per lato, quindi dipende dal fill rate
-sui limit order. Il periodo di validazione è stato disastroso per il long-only (−56%), quindi
-anche i numeri assoluti di A e B vanno letti come "ha perso molto meno" più che "ha guadagnato".
+Lettura: **A e B hanno guadagnato** (+5,43% e +16,06% con fee maker) in un periodo in cui il
+buy & hold long-only ha perso il 56%. Non è "hanno perso meno": è un guadagno, ottenuto in un
+mercato in discesa e quasi interamente dal lato short (vedi sotto).
+
+Con il sizing corretto **B batte A sul rendimento totale** (+16,06% contro +5,43%). Il vantaggio
+però è appeso alle fee: con taker 0,05% B scende a +9,85%, con spot 0,1% a **+0,24%**, sotto A
+(+1,63%). Tutto l'edge di B presuppone di eseguire sempre come maker.
+
+**Kronos senza filtro batte B sul rendimento totale con fee maker** (+31,66% contro +16,06%) ma
+ha un drawdown quasi doppio (−17,8% contro −9,3%) e con fee spot affonda a −11,72%. Quindi il
+filtro serve a contenere il rischio e i costi, non ad aumentare il rendimento lordo.
+
+## Long contro short
+
+Il vantaggio viene quasi tutto dalle posizioni **short**, in un mercato che scendeva:
+
+| modello | lato | trade | win rate (maker) | rendimento maker | rendimento spot |
+|---|---|---|---|---|---|
+| Giudice A | long | 51 | 52,9% | +1,71% | +0,89% |
+| Giudice A | short | 175 | 54,3% | +3,84% | +0,93% |
+| Giudice B | long | 142 | 52,8% | **−2,71%** | **−4,91%** |
+| Giudice B | short | 752 | 56,2% | **+19,65%** | +5,72% |
+| Kronos senza filtro | long | 587 | 49,4% | **−15,69%** | −23,28% |
+| Kronos senza filtro | short | 1.910 | 52,7% | **+48,27%** | +8,89% |
+
+Da segnalare con chiarezza: **il lato long di B perde** (−2,71% maker, −4,91% spot) e il lato
+long di Kronos senza filtro perde molto (−15,69%). Il risultato positivo di B è una scommessa
+ribassista andata bene in un periodo ribassista: va verificato sul lockbox e va dichiarato che
+su un mercato in salita lo stesso modello non ha dimostrato niente.
 
 ## Note di lettura
 
