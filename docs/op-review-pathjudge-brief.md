@@ -90,3 +90,25 @@ Giudice B +9,85%, Giudice A +3,99%, Kronos senza filtro +13,35%.
 con drawdown −17,8% contro −9,3% e rovina sulle fee spot (−11,72%). Il punto da verificare è se
 il filtro di B valga il costo in rendimento: sul lockbox va riportato anche questo confronto,
 non solo A contro B.
+
+
+## Baseline naive e regola di verdetto (aggiunte finali, prima del lockbox)
+
+Due baseline sullo stesso universo di slot (ogni 4h alle 00 e 12 UTC, orizzonte 24h, 10 sleeve,
+una posizione per asset, stesse fee):
+
+| strategia | maker 0,02% | taker 0,05% | spot 0,1% | max DD (maker) |
+|---|---|---|---|---|
+| Sempre short | **+60,47%** | +30,64% | −7,30% | −26,0% |
+| Regola di trend (EMA50 < EMA200 → short) | −12,67% | −28,93% | −49,60% | −28,4% |
+| Buy & hold | −61,73% | −68,87% | −77,94% | −68,7% |
+
+**Regola di verdetto, fissata ora:** sul lockbox il Giudice B deve battere **entrambe** queste
+baseline (sempre short e regola di trend) sul rendimento totale con fee maker. Se non le batte,
+allora Kronos e il giudice **non aggiungono capacità previsionale oltre al trend**, anche se B
+dovesse soddisfare i criteri originali (win rate IC sopra 50%, rendimento positivo, ≥150 trade).
+
+Sul lockbox va riportato anche il **buy & hold** del periodo, per sapere se è stato ribassista o
+rialzista: senza quel numero non si può dire se un risultato positivo è capacità o solo direzione
+del mercato. Le baseline sono in `scripts/path_judge_baselines.py`, con lo stadio lockbox bloccato
+dalla stessa guardia.

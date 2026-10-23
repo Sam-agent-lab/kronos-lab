@@ -1,0 +1,171 @@
+{
+ "period_from": "2025-08-15",
+ "period_to": "2026-07-23",
+ "results": {
+  "Sempre short": {
+   "trades": 3430,
+   "win_rate_maker": 0.5151603498542274,
+   "maker 0.02%": {
+    "total_return": 0.6046741922861426,
+    "max_dd": -0.2603260586711146,
+    "sleeves_positive": 9,
+    "per_asset": {
+     "BTCUSDT": 0.3438,
+     "ETHUSDT": 0.5192,
+     "SOLUSDT": 0.3819,
+     "BNBUSDT": 0.0118,
+     "XRPUSDT": 0.74,
+     "DOGEUSDT": 0.7679,
+     "ADAUSDT": 1.8788,
+     "LINKUSDT": 0.5035,
+     "AVAXUSDT": 1.0017,
+     "TRXUSDT": -0.1018
+    }
+   },
+   "taker 0.05%": {
+    "total_return": 0.30637311308908144,
+    "max_dd": -0.30271704284345136,
+    "sleeves_positive": 8,
+    "per_asset": {
+     "BTCUSDT": 0.0939,
+     "ETHUSDT": 0.2367,
+     "SOLUSDT": 0.1248,
+     "BNBUSDT": -0.1765,
+     "XRPUSDT": 0.4166,
+     "DOGEUSDT": 0.4393,
+     "ADAUSDT": 1.3444,
+     "LINKUSDT": 0.2239,
+     "AVAXUSDT": 0.6297,
+     "TRXUSDT": -0.269
+    }
+   },
+   "spot 0.1%": {
+    "total_return": -0.07299528033765784,
+    "max_dd": -0.36808900021131896,
+    "sleeves_positive": 4,
+    "per_asset": {
+     "BTCUSDT": -0.2239,
+     "ETHUSDT": -0.1225,
+     "SOLUSDT": -0.202,
+     "BNBUSDT": -0.4159,
+     "XRPUSDT": 0.0053,
+     "DOGEUSDT": 0.0213,
+     "ADAUSDT": 0.6644,
+     "LINKUSDT": -0.1316,
+     "AVAXUSDT": 0.1565,
+     "TRXUSDT": -0.4815
+    }
+   }
+  },
+  "Regola di trend": {
+   "trades": 3430,
+   "win_rate_maker": 0.49271137026239065,
+   "maker 0.02%": {
+    "total_return": -0.1266852832196425,
+    "max_dd": -0.28404132599437226,
+    "sleeves_positive": 4,
+    "per_asset": {
+     "BTCUSDT": -0.0964,
+     "ETHUSDT": -0.371,
+     "SOLUSDT": -0.508,
+     "BNBUSDT": 0.2645,
+     "XRPUSDT": -0.44,
+     "DOGEUSDT": -0.3202,
+     "ADAUSDT": 0.2973,
+     "LINKUSDT": 0.0011,
+     "AVAXUSDT": 0.0039,
+     "TRXUSDT": -0.098
+    }
+   },
+   "taker 0.05%": {
+    "total_return": -0.2892850186221855,
+    "max_dd": -0.3280612273407544,
+    "sleeves_positive": 2,
+    "per_asset": {
+     "BTCUSDT": -0.2646,
+     "ETHUSDT": -0.4882,
+     "SOLUSDT": -0.5998,
+     "BNBUSDT": 0.0293,
+     "XRPUSDT": -0.5444,
+     "DOGEUSDT": -0.4469,
+     "ADAUSDT": 0.0559,
+     "LINKUSDT": -0.1853,
+     "AVAXUSDT": -0.183,
+     "TRXUSDT": -0.2659
+    }
+   },
+   "spot 0.1%": {
+    "total_return": -0.49597703259037373,
+    "max_dd": -0.48534835795573794,
+    "sleeves_positive": 0,
+    "per_asset": {
+     "BTCUSDT": -0.4784,
+     "ETHUSDT": -0.6372,
+     "SOLUSDT": -0.7164,
+     "BNBUSDT": -0.2698,
+     "XRPUSDT": -0.6771,
+     "DOGEUSDT": -0.6079,
+     "ADAUSDT": -0.251,
+     "LINKUSDT": -0.4222,
+     "AVAXUSDT": -0.4206,
+     "TRXUSDT": -0.4793
+    }
+   }
+  },
+  "Buy & hold": {
+   "trades": 3430,
+   "win_rate_maker": 0.46822157434402334,
+   "maker 0.02%": {
+    "total_return": -0.6172677204911455,
+    "max_dd": -0.6866459716279809,
+    "sleeves_positive": 0,
+    "per_asset": {
+     "BTCUSDT": -0.5205,
+     "ETHUSDT": -0.6464,
+     "SOLUSDT": -0.6614,
+     "BNBUSDT": -0.4154,
+     "XRPUSDT": -0.6894,
+     "DOGEUSDT": -0.7369,
+     "ADAUSDT": -0.8432,
+     "LINKUSDT": -0.6768,
+     "AVAXUSDT": -0.7805,
+     "TRXUSDT": -0.2022
+    }
+   },
+   "taker 0.05%": {
+    "total_return": -0.6886657842196675,
+    "max_dd": -0.7354325639111629,
+    "sleeves_positive": 0,
+    "per_asset": {
+     "BTCUSDT": -0.6099,
+     "ETHUSDT": -0.7124,
+     "SOLUSDT": -0.7246,
+     "BNBUSDT": -0.5244,
+     "XRPUSDT": -0.7474,
+     "DOGEUSDT": -0.7861,
+     "ADAUSDT": -0.8725,
+     "LINKUSDT": -0.7372,
+     "AVAXUSDT": -0.8215,
+     "TRXUSDT": -0.3508
+    }
+   },
+   "spot 0.1%": {
+    "total_return": -0.7793724576387154,
+    "max_dd": -0.8009143032262308,
+    "sleeves_positive": 0,
+    "per_asset": {
+     "BTCUSDT": -0.7235,
+     "ETHUSDT": -0.7962,
+     "SOLUSDT": -0.8049,
+     "BNBUSDT": -0.6628,
+     "XRPUSDT": -0.821,
+     "DOGEUSDT": -0.8485,
+     "ADAUSDT": -0.9098,
+     "LINKUSDT": -0.8138,
+     "AVAXUSDT": -0.8736,
+     "TRXUSDT": -0.5396
+    }
+   }
+  }
+ }
+}

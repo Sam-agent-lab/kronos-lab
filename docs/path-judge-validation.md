@@ -84,3 +84,28 @@ su un mercato in salita lo stesso modello non ha dimostrato niente.
 - Giudice B: 19,8% dei segnali → **~280 trade** attesi su 1.415 righe (sopra il minimo di 150).
 - Giudice A: 5,0% dei segnali → **~70 trade** attesi (sotto 150: i suoi numeri di lockbox
   saranno rumorosi e il confronto con B resta sbilanciato sul campione).
+
+## Baseline naive (stesso universo di slot, stesso sizing)
+
+Universo: ogni slot 4h (00 e 12 UTC) dal 2025-08-15 al 2026-07-23, orizzonte 24h, una posizione
+alla volta per asset, 10 sleeve da 1/10. Nessun filtro, nessun modello.
+
+| strategia | fee | trade | win rate | rendimento totale | max DD | sleeve positive |
+|---|---|---|---|---|---|---|
+| **Sempre short** | maker 0,02% | 3.430 | 51,5% | **+60,47%** | −26,0% | 9/10 |
+| Sempre short | taker 0,05% | 3.430 | 51,5% | +30,64% | −30,3% | 8/10 |
+| Sempre short | spot 0,1% | 3.430 | 51,5% | −7,30% | −36,8% | 4/10 |
+| Regola di trend (EMA50 vs EMA200) | maker 0,02% | 3.430 | 49,3% | −12,67% | −28,4% | 4/10 |
+| Regola di trend | taker 0,05% | 3.430 | 49,3% | −28,93% | −32,8% | 2/10 |
+| Regola di trend | spot 0,1% | 3.430 | 49,3% | −49,60% | −48,5% | 0/10 |
+| Buy & hold | maker 0,02% | 3.430 | 46,8% | −61,73% | −68,7% | 0/10 |
+| Buy & hold | spot 0,1% | 3.430 | 46,8% | −77,94% | −80,1% | 0/10 |
+
+**Il dato che cambia la lettura:** con fee maker la baseline più stupida — sempre short — rende
+**+60,47%**, quasi il doppio di Kronos senza filtro (+31,66%) e quasi quattro volte il Giudice B
+(+16,06%). Il periodo era così ribassista che stare sempre short batteva qualsiasi filtro.
+La regola di trend, invece, perde (−12,67%): il segnale EMA50/EMA200 non basta.
+
+Conseguenza per il verdetto: sul lockbox B deve battere **anche** queste due baseline, non solo
+il Giudice A. Se non lo fa, Kronos e il giudice non aggiungono capacità previsionale oltre al
+semplice "essere short in un mercato che scende".
