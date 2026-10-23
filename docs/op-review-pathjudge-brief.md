@@ -52,3 +52,24 @@ positivo**. Se B ≈ A, Kronos non aggiunge nulla.
    path uguale a quella realizzata) o introduce un bias di selezione?
 5. Il block bootstrap a 7 giorni è adeguato con serie multiple e sovrapposte nel tempo?
 6. Verdetto esplicito: **si può eseguire la valutazione sul lockbox?** Se no, cosa correggere.
+
+
+## Criterio di rendimento (fissato prima del lockbox)
+
+"Return" nei criteri di successo significa **rendimento netto totale dopo fee maker sul periodo
+del lockbox**, con capitale diviso in **10 sleeve uguali** (1/10 per asset), nessuna leva e nessun
+riuso del capitale mentre una posizione è aperta in quella sleeve. Il rendimento per trade e il
+max drawdown si riportano ma **non sono decisivi**. Il Giudice A mantiene la soglia scelta in
+validation (0,70): non si cambia per far tornare i conti.
+
+## Tre controlli aggiuntivi richiesti
+
+1. **Path credibility out-of-fold**: verifica che lo scorer che produce `prob_up_reweighted` sia
+   allenato **solo** sui path del training di ciascun fold e mai sui path della validation (e
+   nemmeno indirettamente, via i pesi o la selezione delle feature).
+2. **Sizing/equity**: verifica il calcolo del rendimento totale (`scripts/path_judge_sizing.py`):
+   media dei rendimenti delle 10 sleeve, compounding dentro la sleeve, nessun riuso di capitale,
+   drawdown calcolato sulla curva di portafoglio e non sulla singola sleeve.
+3. **Fill-rate risk**: con fee spot (0,1% per lato) il vantaggio di B sparisce (+0,24% contro
+   +1,63% di A). Il verdetto sul lockbox va dato **anche** in quello scenario, dichiarando che il
+   risultato con fee maker presuppone di riuscire a eseguire sempre come maker.
