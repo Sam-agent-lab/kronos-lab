@@ -171,3 +171,18 @@ prob_up 0.30 (−1.59%), XRP 1h `TRENDING_UP` prob_up 0.70 (+1.77%, banda 9.88%)
 - Dev: giudice 193 trade, win 53,9% (IC 46,8–60,8), net maker +0,031%; senza filtro 2.231
   trade, 48,1%, −0,102%. Controllo etichette 39 trade, 59,0%, +0,102% → nessuna prova di edge.
 - Lockbox gated da `docs/op-review-phase7.md`: attesa review Opus.
+
+## 2026-10-23 — Path judge: si continua solo sul 4h
+
+- Shard 1h parziali (8 serie) archiviati in `paths/archive_incomplete_1h/` con README "incompleti,
+  non usati". AVAX/TRX 1h mai partite. Nessun altro pod creato.
+- Worker corretto: `read_tasks()` rilegge `tasks.txt` a ogni claim (prima lo leggeva una volta
+  all'avvio, ed è per questo che il run ha preso 8 serie 1h invece di 3). Lezione nella skill.
+- Dataset 4h: 6.863 forecast direzionali, 10 asset, 2025-08-15 → 2026-10-21, base rate 50,4%.
+  Fonti esterne incluse al 100% del periodo (Coin Metrics BTC/ETH, stablecoin DefiLlama,
+  Nasdaq-100 e DXY con ritardo 2 giorni).
+- Validazione (5 fold, purge 3 giorni, 4.525 righe out-of-fold): A 226 trade/54,0%/0,255%,
+  B 894 trade/55,7%/0,178%, Kronos senza filtro 2.497/51,9%/0,101%, controllo mescolato
+  47,4%/−0,173%, logistiche ~50%. B batte A sul win rate e sul totale, A batte B per trade.
+- Trade attesi sul lockbox: B ~280, A ~70.
+- Fermo prima del lockbox: serve la review Opus (`docs/op-review-pathjudge-brief.md`).

@@ -34,8 +34,14 @@ def now() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
-def claim(tasks: list[str]) -> str | None:
-    for task in tasks:
+def read_tasks(path: Path) -> list[str]:
+    """Rilegge la coda a OGNI claim: modificare tasks.txt ha effetto subito, senza restart."""
+    return [line.strip() for line in path.read_text().splitlines()
+            if line.strip() and not line.startswith("#")]
+
+
+def claim(tasks_path: Path) -> str | None:
+    for task in read_tasks(tasks_path):
         directory = PATHS / task.replace(":", "_")
         if (directory / "DONE").is_file() or (directory / "FAILED").is_file():
             continue
@@ -55,16 +61,17 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     LOCKS.mkdir(parents=True, exist_ok=True)
-    tasks = [line.strip() for line in Path(args.tasks).read_text().splitlines()
-             if line.strip() and not line.startswith("#")]
+    tasks_path = Path(args.tasks)
+    tasks = read_tasks(tasks_path)
     predictor = gen.load_predictor(args.device)
-    print(json.dumps({"event": "worker_start", "tasks": len(tasks), "at": now()}), flush=True)
+    print(json.dumps({"event": "worker_start", "tasks": len(tasks),
+                      "note": "tasks.txt viene riletto a ogni claim", "at": now()}), flush=True)
 
     while True:
         if STOP.is_file():
             print(json.dumps({"event": "stop_file", "at": now()}), flush=True)
             return 4
-        task = claim(tasks)
+        task = claim(tasks_path)
         if task is None:
             print(json.dumps({"event": "queue_empty", "at": now()}), flush=True)
             return 0

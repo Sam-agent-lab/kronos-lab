@@ -1,10 +1,10 @@
 {
- "rows": 328,
- "series": 8,
- "base_rate": 0.5305,
+ "rows": 6863,
+ "series": 10,
+ "base_rate": 0.5039,
  "from": "2025-08-15 00:00:00+00:00",
- "to": "2025-09-08 12:00:00+00:00",
- "lockbox_rows": 0,
+ "to": "2026-10-21 12:00:00+00:00",
+ "lockbox_rows": 1415,
  "external_used": [
   "btc_netflow_pct",
   "eth_netflow_pct",

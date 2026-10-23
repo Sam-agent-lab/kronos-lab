@@ -143,50 +143,64 @@ def attach_reweighted(frame: pd.DataFrame, path_rows: pd.DataFrame) -> pd.DataFr
 
 def wilson_block_bootstrap(frame: pd.DataFrame, block_days: int = BLOCK_DAYS,
                            draws: int = 2000) -> dict:
-    """CI del win rate e del rendimento con block bootstrap sui giorni (blocchi di 7 giorni)."""
+    """CI con block bootstrap a blocchi di giorni, calcolato su aggregati giornalieri.
+
+    Prima ricampionava DataFrame interi: 2.000 ricampionamenti per ogni soglia erano lentissimi.
+    Così si ricampionano solo quattro numeri per giorno (trade, hit, somma e numero di rendimenti).
+    """
+    empty = {"win_low": float("nan"), "win_high": float("nan"),
+             "ret_low": float("nan"), "ret_high": float("nan")}
     if frame.empty:
-        return {"win_low": float("nan"), "win_high": float("nan"),
-                "ret_low": float("nan"), "ret_high": float("nan")}
-    frame = frame.copy()
-    frame["day"] = pd.to_datetime(frame["anchor"]).dt.floor("D")
-    days = np.array(sorted(frame["day"].unique()))
-    blocks = [days[i:i + block_days] for i in range(0, len(days), block_days)]
+        return empty
+    daily = (frame.assign(day=pd.to_datetime(frame["anchor"]).dt.floor("D"))
+             .groupby("day")
+             .agg(trades=("target", "size"), hits=("target", "sum"),
+                  ret_sum=("net_return_maker", "sum"), ret_n=("net_return_maker", "size")))
+    if len(daily) < 2:
+        return empty
+    values = daily.to_numpy(dtype=float)
+    blocks = [values[i:i + block_days] for i in range(0, len(values), block_days)]
     if len(blocks) < 2:
-        return {"win_low": float("nan"), "win_high": float("nan"),
-                "ret_low": float("nan"), "ret_high": float("nan")}
-    grouped = {day: group for day, group in frame.groupby("day")}
+        return empty
+    sums = np.array([block.sum(axis=0) for block in blocks])       # (n_blocchi, 4)
     rng = np.random.default_rng(SEED)
-    wins, rets = [], []
-    for _ in range(draws):
-        chosen = rng.integers(0, len(blocks), len(blocks))
-        sample = pd.concat([grouped[day] for index in chosen for day in blocks[index]
-                            if day in grouped])
-        if sample.empty:
-            continue
-        wins.append(sample["target"].mean())
-        rets.append(sample["net_return_maker"].mean())
-    if not wins:
-        return {"win_low": float("nan"), "win_high": float("nan"),
-                "ret_low": float("nan"), "ret_high": float("nan")}
+    picks = rng.integers(0, len(sums), size=(draws, len(sums)))
+    totals = sums[picks].sum(axis=1)                               # (draws, 4)
+    wins = np.divide(totals[:, 1], totals[:, 0], out=np.full(draws, np.nan),
+                     where=totals[:, 0] > 0)
+    rets = np.divide(totals[:, 2], totals[:, 3], out=np.full(draws, np.nan),
+                     where=totals[:, 3] > 0)
     return {
-        "win_low": float(np.percentile(wins, 2.5)), "win_high": float(np.percentile(wins, 97.5)),
-        "ret_low": float(np.percentile(rets, 2.5)), "ret_high": float(np.percentile(rets, 97.5)),
+        "win_low": float(np.nanpercentile(wins, 2.5)),
+        "win_high": float(np.nanpercentile(wins, 97.5)),
+        "ret_low": float(np.nanpercentile(rets, 2.5)),
+        "ret_high": float(np.nanpercentile(rets, 97.5)),
     }
 
 
 def non_overlapping(frame: pd.DataFrame) -> pd.DataFrame:
-    """Una posizione per serie alla volta: niente trade sovrapposti sullo stesso simbolo/tf."""
-    kept = []
-    for (_, _), group in frame.groupby(["symbol", "tf"]):
+    """Una posizione per serie alla volta: niente trade sovrapposti sullo stesso simbolo/tf.
+
+    Versione vettorizzata: si costruisce prima l'array degli "open until" per serie e si scarta
+    un indice quando il suo `take` cade dentro una posizione già aperta.
+    """
+    if frame.empty:
+        return frame
+    frame = frame.sort_values(["symbol", "tf", "anchor"]).reset_index(drop=True)
+    keep = np.zeros(len(frame), dtype=bool)
+    for _, index in frame.groupby(["symbol", "tf"], sort=False).indices.items():
+        index = np.asarray(index)
         open_until = None
-        for _, row in group.sort_values("anchor").iterrows():
+        for position in index:
+            row = frame.iloc[position]
+            if not row["take"]:
+                continue
             anchor = pd.Timestamp(row["anchor"])
             if open_until is not None and anchor < open_until:
                 continue
-            kept.append(row)
-            if row["take"]:
-                open_until = anchor + pd.Timedelta(minutes=STEP[row["tf"]] * int(row["horizon"]))
-    return pd.DataFrame(kept)
+            keep[position] = True
+            open_until = anchor + pd.Timedelta(minutes=STEP[row["tf"]] * int(row["horizon"]))
+    return frame[keep]
 
 
 def summarise(frame: pd.DataFrame) -> dict:
@@ -213,9 +227,17 @@ def summarise(frame: pd.DataFrame) -> dict:
 
 
 def fit_and_score(train: pd.DataFrame, valid: pd.DataFrame, features: list[str]) -> np.ndarray:
+    numeric = [f for f in features if f not in CATEGORICAL]
+    x_train = train[features].copy()
+    x_valid = valid[features].copy()
+    x_train[numeric] = x_train[numeric].fillna(0)     # le categoriche non si toccano
+    x_valid[numeric] = x_valid[numeric].fillna(0)
+    for column in CATEGORICAL:                        # i merge perdono il dtype category
+        x_train[column] = x_train[column].astype("category")
+        x_valid[column] = x_valid[column].astype("category")
     model = lgb.LGBMClassifier(**PARAMS)
-    model.fit(train[features].fillna(0), train["target"])
-    return model.predict_proba(valid[features].fillna(0))[:, 1]
+    model.fit(x_train, train["target"])
+    return model.predict_proba(x_valid)[:, 1]
 
 
 def logit_score(train: pd.DataFrame, valid: pd.DataFrame, numeric: list[str]) -> np.ndarray:
@@ -284,9 +306,9 @@ def run_validation(frame: pd.DataFrame, path_rows: pd.DataFrame, context: list[s
         block["p_logit_b"] = logit_score(train_b, valid_b, context + KRONOS_NUMERIC)
 
         rng = np.random.default_rng(SEED + len(blocks))
-        shuffled = train.copy()
+        shuffled = train_b.copy()          # stesse colonne di B, etichette mescolate
         shuffled["target"] = rng.permutation(shuffled["target"].to_numpy())
-        block["p_shuffled"] = fit_and_score(shuffled, valid, features_b)
+        block["p_shuffled"] = fit_and_score(shuffled, valid_b, features_b)
         block["fold"] = str(edge.date())
         blocks.append(block)
         print(json.dumps({"fold": str(edge.date()), "train": len(train), "valid": len(valid),

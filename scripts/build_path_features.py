@@ -147,6 +147,8 @@ def path_features(paths: np.ndarray, last: float) -> dict:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", default=str(OUT))
+    parser.add_argument("--tfs", nargs="*", default=None,
+                        help="timeframe da includere (default: tutti quelli presenti)")
     args = parser.parse_args(argv)
 
     external, external_used = external_frame()
@@ -158,6 +160,8 @@ def main(argv: list[str] | None = None) -> int:
             continue
         symbol, tf = directory.name.split("_", 1)
         if tf not in STEP:
+            continue
+        if args.tfs and tf not in args.tfs:
             continue
         metas = [json.loads(line) for line in directory.joinpath("meta.jsonl").read_text().splitlines()
                  if line.strip()]
@@ -214,7 +218,7 @@ def main(argv: list[str] | None = None) -> int:
 
             bands = {k: v for k, v in meta["bands"].items()}
             row = {
-                "anchor": anchor, "symbol": symbol, "tf": tf,
+                "anchor": anchor, "symbol": symbol, "tf": tf, "horizon": horizon,
                 "hour": anchor.hour, "weekday": anchor.weekday(),
                 "direction": direction,
                 # Kronos
